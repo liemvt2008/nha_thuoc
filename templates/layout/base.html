@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load staticfiles %}
+
+{% block head_title %}
+    {% include 'layout/head_title.html' %}
+{% endblock  %}
+
+<body>
+
+{% block  header %}
+    {% include 'layout/header.html' %}
+{% endblock  %}
+
+{% block body_block %}
+
+{% endblock  %}
+
+{% block footer %}
+    {% include 'layout/footer.html' %}
+{% endblock  %}
+
+{% block js_script %}
+    {% include 'layout/js_script.html' %}
+{% endblock  %}
+
+</body>

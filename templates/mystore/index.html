@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<div class='container-fluid'>
+    <div class = 'row'>
+        <div class='col-md-12'>
+            <a class="navbar-brand"><h1><span>Danh sách sản phẩm</span></h1></a>
+        </div>
+    </div>
+</div>
+<div class='container-fluid'>
+    <div class = 'row'>
+        <div class='col-md-12'>
+            <!-- Page Features -->
+            <div class="row text-center">
+                {% if products %}
+                    {% for value in products %}
+                        <div class="col-lg-2 col-md-4 mb-2">
+                            <div class="card">
+                                <img class="card-img-top" src="{{value.image.url}}" alt="{{value.name}}">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{value.name}}</h4>
+                                    <p class="card-text">{{value.description}}<br/>{{value.fee}} vnđ</p>
+                                </div>
+                                <div>
+                                    <a href="{% url 'mystore:product_detail' value.pk%}" class='btn btn-success' style="float: center;" > Xem thêm </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
