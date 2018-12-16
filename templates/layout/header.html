@@ -7,26 +7,40 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="{% url 'mystore:index' %}">Trang chủ <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Tư vấn</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">BLOG</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Liên hệ</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Về chúng tôi</a>
-				</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'mystore:index' %}">Trang chủ <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Tư vấn</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">BLOG</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'mystore:contact' %}">Liên hệ</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Về chúng tôi</a>
+					</li>
+					<li class="nav-item">
+					{% if username %}
+						<a class="nav-link" href="{% url 'mystore:dang_xuat' %}">Xin chào, {{username}}</span></a>
+					{% else %}
+						<a class="nav-link" href="{% url 'mystore:dang_nhap' %}">Đăng nhập</span></a>
+					{% endif %}	
+					</li>
+					</ul>
+				<ul class="navbar-nav text-right">
+					<li class="nav-item">
+						<a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'cart:cart_detail'%}">Giỏ hàng</a>
+					</li>
+					<li class="nav-item">
+						{% if cart %}
+						<a class="nav-link" href="{% url 'cart:cart_detail'%}">
+						Giỏ hàng có {{cart|length}} sản phẩm , VNĐ: {{cart.get_total_fee}}</a>
+						{% endif %}
+					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
 			</div>
 		</nav>	
 		<div class='container-fluid'>

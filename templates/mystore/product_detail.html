@@ -13,6 +13,15 @@
                             <h4 class="card-title">{{product.name}}</h4>
                             <p class="card-text">{{product.description}}<br/>{{product.fee}} vnđ</p>
                         </div>
+                    <div>
+                        <form action="{% url 'cart:cart_add' product.pk%}" method="post">
+                            {{cart_product_form}}
+                            {% csrf_token %}
+                            <div class="card-footer" >
+                            <input type="submit" value = "Thêm vào giỏ hàng" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
                     </div>
                 </div>
             {% endif%}
