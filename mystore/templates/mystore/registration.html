@@ -1,0 +1,29 @@
+{% extends "layout/base.html" %}
+
+{% load staticfiles %}
+{% block body_block %}
+    <div class="container">
+    {% if registered %}
+        <h3>Bạn đã đăng ký thành công.</h3>
+    {% else %}
+        <h3>Điền vào form đăng ký</h3>
+        <form method="POST" enctype="multipart/form-data">
+        <table>
+
+        {% for field in user_form %}
+            <tr><td>{{field.label}} </td>
+            <td>{{field}}</td></tr>
+        {% endfor %}
+
+        {% csrf_token %}
+
+        <tr><td colspan='2' align="center">
+        <input type="submit" class="btn btn-success" value="Đăng ký">   
+        </td></tr>
+        </table>
+        </form>
+
+    </div>
+    {% endif %}
+    </div>
+{% endblock %}

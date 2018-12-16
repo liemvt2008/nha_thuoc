@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from mystore.models import Product, M_Khach_hang
-from cart import forms
+from cart.forms import CardAddProductForm
 from mystore import forms
 from django.shortcuts import redirect
 from django.contrib.auth.hashers import PBKDF2PasswordHasher
@@ -29,7 +29,7 @@ def index(request):
 
 def product_detail(request, id=None):
     product = Product.objects.get(pk=id)
-    cart_product_form = forms.CardAddProductForm()
+    cart_product_form = CardAddProductForm()
     return render(request, 'mystore/product_detail.html', context= {'product': product, 'cart_product_form': cart_product_form})
 
 def dang_nhap(request):

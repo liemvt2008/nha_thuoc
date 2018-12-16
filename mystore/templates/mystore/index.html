@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<div class='container-fluid'>
+    <div class = 'row'>
+        <div class='col-md-12'>
+            <a class="navbar-brand"><h1><span>Danh sách sản phẩm</span></h1></a>
+        </div>
+    </div>
+</div>
+<div class='container-fluid'>
+    <div class = 'row'>
+        <div class='col-md-12'>
+            <!-- Page Features -->
+            <div class="row text-center">
+                {% if products %}
+                    {% for value in products %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <img class="card-img-top" src="{{value.image.url}}" alt="{{value.name}}">
+                                <div class="card-body">
+                                    <h4 class="card-title">{{value.name}}</h4>
+                                    <p class="card-text">{{value.description}}<br/>{{value.fee}} vnđ</p>
+                                </div>
+                                <div>
+                                    <a href="{% url 'mystore:product_detail' value.pk%}" class='btn btn-success' style="float: center;" > Xem thêm </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif%}
+            </div>
+            <ul class="pagination">
+                <li class="step-links">
+                    {% if products.has_previous %}
+                        <a href="?page={{ products.previous_page_number }}">Previous</a>
+                    {% endif %}
+                </li>
+
+                <span class="current">
+                    Page {{ products.number }} of {{ products.paginator.num_pages }}.
+                </span>
+
+                <li>
+                    {% if products.has_next %}
+                        <a href="?page={{ products.next_page_number }}">Next</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

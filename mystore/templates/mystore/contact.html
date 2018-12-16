@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<div class="container-fluid">
+    <div class="row">
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1324536685306!2d106.67630031419394!3d10.80116599230477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d7880bb05f%3A0xfdfcf778ce7aea8d!2zNDI5LzQwIE5ndXnhu4VuIEtp4buHbSwgUGjGsOG7nW5nIDksIFBow7ogTmh14bqtbiwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1544924546094" width="1500" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <br />
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-1">
+            <h4>Địa chỉ liên hệ:</h4>
+            <p class="block-author"> Công ty TNHH Diamond </p>
+            <p>429/40 Nguyễn Kiệm, Phường 9, Quận Phú Nhuận, Tp.HCM</p>
+            <p>Phone: 08.2456.321</p>
+            <p>Fax: 08.2456.321</p>
+            <em class="block-author">Email: diamond_treasure@gmail.com </em> <br>
+        </div>
+        <div class="col-lg-5">
+            <div class="feedback-form">    
+                <div id="contact-response"></div>    
+                {% if registered %}
+                    <h3>Cảm ơn bạn đã gửi ý kiến/ thông tin liên hệ</h3>
+                {% else %}
+                    <table>
+                    <form method="post" id="contact-form">
+                        <fieldset>
+                        {% csrf_token %}
+                        {% for field in contact_form%}
+                            <tr><td>
+                            <div class="form-group form-groupfullname">
+                            <label class="control-label" for="fullname">{{field.label}}</label>
+                            </div></td>
+                            <td>
+                            <div>
+                            {{field}}
+                            </div></td>
+                        {% endfor%}
+                        <tr><td colspan="2" align="center">
+                            <input type="submit" class="btn btn-success" value="Gửi liên hệ">
+                            </td></tr>
+                            </fieldset>
+                        </form>
+                    </table>
+                {% endif%}
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock %}
